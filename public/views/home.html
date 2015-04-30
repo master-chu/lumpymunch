@@ -1,0 +1,15 @@
+<div ng-show="!currentUser">
+  <div class="page-header"> <h1> Welcome! </h1> </div>
+  <p class="alert bg-info alert-primary"> Nutraction is a tool for tracking nutrition information based on your personal needs. </p>
+
+  <p> Use our <a href="#/search">search</a> to look through the food database, or <a href="#/register">register</a> to get started! </p>
+</div>
+
+<div ng-show="currentUser">
+  <div class="page-header"> <h1> Welcome, {{currentUser.username}}! </h1> </div>
+  <p class="alert bg-info alert-primary"> Nutraction is a tool for tracking nutrition information based on your personal needs. </p>
+
+  <p> Head over to <a href="#/dailyintake">your daily intake</a> to add foods to your day! </p>
+</div>
+
+<!-- <img src="views/monk.png" /> -->

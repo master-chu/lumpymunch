@@ -1,0 +1,56 @@
+.panel-heading {
+  padding: 0px;
+}
+
+.community-section {
+    max-height: 400px;
+    overflow-y:scroll; 
+}
+
+.community-button {
+    float: right;
+}
+
+.error-message {
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  margin-bottom: 0;
+  left: 0;
+}
+
+.username {
+  cursor: pointer;
+}
+
+.account-type {
+  cursor: help;
+}
+
+/* D3 stuff */
+/*path {
+  stroke: steelblue;
+  stroke-width: 1;
+  fill: none;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: lightgrey;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}*/

@@ -1,0 +1,22 @@
+<h1> Search foods </h1>
+
+<div class="input-group">
+  <input ng-model="foodQuery" type="text" class="form-control" placeholder="Search for...">
+  <span class="input-group-btn">
+    <button ng-click="searchFood(foodQuery)" class="btn btn-default" type="button">Search</button>
+  </span>
+</div>
+
+<table ng-show="searchedFoods" class="table table-hover table-condensed">
+  <tbody>
+    <tr ng-repeat="food in searchedFoods">
+      <td>
+        <a href="#/search/details/{{food.ndbno}}"class="btn btn-primary btn-xs">
+          <span class="glyphicon glyphicon-option-horizontal"></span>
+        </a>
+      </td>
+      <td> {{food.name}} </td>
+    </tr>
+  </tbody>
+</table>
+

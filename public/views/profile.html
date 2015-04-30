@@ -1,0 +1,90 @@
+<div class="page-header"> 
+  <h1> 
+    Welcome, {{currentUser.username}}! 
+    <span ng-if="currentUser.accountType==='private'" class="glyphicon glyphicon-lock account-type" title="Private Account"></span> 
+    <span ng-if="currentUser.accountType!=='private'" class="glyphicon glyphicon-globe account-type" title="Public Account"></span> 
+  </h1> 
+</div>
+
+<div>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="uname" class="control-label col-sm-2" >Name</label>
+      <div name="uname" class="col-sm-10"> {{ currentUser.username }} </div>
+    </div>  
+
+    <div class="form-group">
+      <label for="gender" class="control-label col-sm-2">Gender</label>
+      <div name="gender" class="col-sm-10"> {{ currentUser.gender }} </div>
+    </div>  
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Age</label>
+      <div class="col-sm-10">
+        <div ng-show="!editing"> {{ currentUser.age }} </div>
+        <input ng-show="editing" ng-model="userClone.age" type="text" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Height</label>
+      <div class="col-sm-10">
+        <div ng-show="!editing"> {{ currentUser.height }} Inches </div>
+        <input ng-show="editing" ng-model="userClone.height" type="text" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Weight</label>
+      <div class="col-sm-10">
+        <div ng-show="!editing"> {{ currentUser.weight }} Pounds </div>
+        <input ng-show="editing" ng-model="userClone.weight" type="text" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="activity" class="control-label col-sm-2">Activity</label>
+      <div class="col-sm-10">
+        <div ng-show="!editing" name="activity"> {{ activityLevels[currentUser.activityLevel].name }} </div>
+        <div ng-show="editing">
+          <select name="activity" class="form-control" ng-model="userClone.activityLevel">
+            <option value="0">Sedentary</option>
+            <option value="1">Light Activity</option>
+            <option value="2">Medium Activity</option>
+            <option value="3">Heavy Activity</option>
+            <option value="4">Very Heavy Activity</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label col-sm-2">Publicity</label>
+    <div class="col-sm-10">
+      <div ng-show="!editing"> {{ currentUser.accountType }} </div>
+      <div ng-show="editing">
+        <select name="gender" class="form-control" ng-model="userClone.accountType">
+          <option selected value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+      </div>
+    </div>
+  </div> 
+
+    <div class="form-group">
+      <div class="col-sm-2">&nbsp;</div>
+      <div class="col-sm-10">
+        <button ng-show="!editing" ng-click="showEdit()" class="btn btn-primary" > 
+          <span class="glyphicon glyphicon-pencil"></span> Edit
+        </button>
+        <button ng-show="editing" ng-click="commitEdit()" type="submit" class="btn btn-success" > 
+          <span class="glyphicon glyphicon-ok"></span> Submit
+        </button>
+        <button ng-show="editing" ng-click="cancelEdit()" class="btn btn-warning" > 
+          <span class="glyphicon glyphicon-remove"></span> Cancel
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>

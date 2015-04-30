@@ -1,0 +1,101 @@
+<div class="page-header"> <h1> Community </h1> </div>
+
+<div>
+  <div class="col-md-4">
+
+    <h3> Following </h3>
+
+    <div class="list-group community-section">
+      <a ng-repeat="follow in following" class="list-group-item">
+        <div class="list-group-item-heading"> 
+          <h4> 
+            <span ng-click="openProfile(follow)" class="text-primary username"> 
+              {{ follow.username }} 
+            </span>
+            <button ng-click="deleteFollowing(follow)" class="btn btn-danger community-button" > 
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </h4>
+        </div>
+        <p class="list-group-item-text">
+          User Since {{ follow.created | date:'M/d/yyyy'}}
+        </p>
+
+      </a>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+
+    <h3> Followed By </h3>
+
+    <div class="list-group community-section">
+      <a ng-repeat="follower in followedBy" class="list-group-item">
+        <div class="list-group-item-heading"> 
+          <h4> 
+            <span ng-click="openProfile(follower)" class="text-primary username"> 
+              {{ follower.username }} 
+            </span>
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <button ng-click="addFollowing(follower)" ng-show="!isFollowing(follower._id)" class="btn btn-success community-button" > 
+              <span class="glyphicon glyphicon-plus"></span>
+            </button> -->
+          </h4>
+        </div>
+        <p class="list-group-item-text">
+          User Since {{ follower.created | date:'M/d/yyyy'}}
+        </p>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="col-md-4"> 
+
+    <h3> Find Users </h3>
+
+    <div class="list-group community-section">
+      <a ng-repeat="other in notFollowing" class="list-group-item">
+        <div class="list-group-item-heading"> 
+          <h4> 
+            <span ng-click="openProfile(other)" class="text-primary username"> 
+              {{ other.username }} 
+            </span>
+            <button ng-click="addFollowing(other)" class="btn btn-success community-button" > 
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </h4>
+        </div>
+        <p class="list-group-item-text">
+          User Since {{ other.created | date:'M/d/yyyy'}}
+        </p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="profile-view" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ viewing.username }}</h3>
+      </div>
+      <div class="modal-body">
+        <div>
+        <label>Age:</label> {{ viewing.age }} <br/>
+        <label>Weight:</label> {{ viewing.weight }} pounds <br/>
+        <label>Height:</label> {{ viewing.height }} inches <br/>
+        <label>Gender:</label> {{ viewing.gender }}
+        </div>
+        <div id="graph"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

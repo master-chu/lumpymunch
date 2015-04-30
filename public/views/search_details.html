@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Detailed Breakdown</div>
+  <div class="panel-body">
+    <h3> {{food.name}} </h3>
+    <select ng-model="selectedMeasureIndex" name="measure">
+      <option ng-repeat="measure in food.nutrients[0].measures" value="{{$index}}">{{measure.label}}</option>
+    </select>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Nutrient
+        </th>
+        <th>
+          Value
+        </th>
+        <th>
+          Unit
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="nutrient in food.nutrients">
+        <td> 
+          {{nutrient.name}}
+        </td>
+        <td>
+          {{nutrient.measures[selectedMeasureIndex].value}}
+        </td>
+        <td>
+          {{nutrient.unit}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

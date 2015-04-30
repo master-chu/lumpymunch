@@ -1,0 +1,101 @@
+<h1> Daily Intake </h1>
+<div class="input-group">
+  <input ng-model="foodQuery" type="text" class="form-control" placeholder="Search for...">
+  <span class="input-group-btn">
+    <button ng-click="searchFood(foodQuery)" class="btn btn-primary" type="button">Search</button>
+  </span>
+</div>
+
+
+<div class="col-md-8">
+  <table ng-show="todaysDailyIntake.foods.length" class="table table-striped">
+    <thead>
+      <tr>
+        <th> name </th>
+        <th> quantity </th>
+        <th> measure </th>
+        <th> &nbsp; </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="food in todaysDailyIntake.foods">
+        <td> {{food.name}} </td>
+        <td>
+          <button ng-class="{disabled: food.quantity <= 1}" ng-click="decrementFoodQuantity($index)" class="btn btn-xs">
+            <span class="glyphicon glyphicon-minus" aria-hidden=""></span>
+          </button>
+          {{food.quantity}}
+          <button ng-click="incrementFoodQuantity($index)" class="btn btn-xs">
+            <span class="glyphicon glyphicon-plus" aria-hidden=""></span>
+          </button>
+        </td>
+        <td> {{food.measure}} </td>
+        <td> 
+          <button ng-click="vomit($index)" class="btn btn-danger pull-right">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div ng-show="!todaysDailyIntake.foods.length">
+  <br/>
+  Search for foods above to add them to today's meal plan!
+</div>
+</div>
+<div class="col-md-4">
+  <h2> Nutrient Totals </h2>
+  <div ng-repeat="(name, value) in todaysTotals">
+    <label> {{name}}  </label> {{value}} <br/>
+  </div>
+  <h2> Caloric Requirements </h2>
+  {{todaysTotals.energy}}/{{computeBMR()}} calories
+</div>
+
+
+
+
+<br/>
+
+<div class="col-md-12">
+  <div class="panel-group" id="accordion">
+
+    <div ng-repeat="food in searchedFoods" class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <button ng-click="expand($event, food.ndbno)" type="button" class="btn btn-xs btn-primary toggle-panel">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
+          {{food.name}}
+        </h4>
+      </div>
+      <div class="panel-collapse collapse">
+        <div class="panel-body">       
+
+          <span class="col-md-1" ng-repeat="nutrient in releventNutritionalData">
+            <b> {{nutrientShortName(nutrient.name)}} </b> <br/>
+            {{roundDown(nutrient.measures[selectedMeasureIndex].value * selectedFoodQuantity)}}
+            {{nutrient.unit}}
+          </span>
+
+          <div class="col-md-2">
+            <label for="quantity"> Quantity </label>
+            <input type="number" name="quantity" ng-model="selectedFoodQuantity" />
+          </div>
+          <div class="col-md-3">
+            <label for="measure"> Measure </label> <br/>
+            <select ng-model="selectedMeasureIndex" name="measure">
+              <option ng-repeat="measure in releventNutritionalData[0].measures" value="{{$index}}">{{measure.label}}</option>
+            </select>
+          </div>
+          <span class="col-md-2">
+            <button ng-click="eat(food.ndbno, food.name, selectedFoodQuantity, selectedMeasureIndex)" class="btn btn-success">
+              <span>Eat This Food</span>
+            </button>
+          </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

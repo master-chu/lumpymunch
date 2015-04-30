@@ -1,0 +1,19 @@
+<h1>{{currentUser.username}}'s Consumption History</h1>
+
+<div class="col-md-6" id="caloriesHistoryGraph"></div>
+<div class="col-md-6" style="height: 400px">
+  <h2> Report </h2>
+  <div class="alert alert-warning" ng-if="todaysTotals.energy < computeBMR()">
+    You have not met your daily requirement of <strong>{{computeBMR()}} calories</strong> yet today.
+    Keep eating!
+  </div>
+  <div class="alert alert-success" ng-if="todaysTotals.energy >= computeBMR()">
+    You have met your daily requirement of <strong>{{computeBMR()}} calories</strong>! 
+    Good work! 
+  </div>
+</div>
+<div class="col-md-6" id="proteinHistoryGraph"></div>
+<div class="col-md-6" id="carbsHistoryGraph"></div>
+<div class="col-md-6" id="fatHistoryGraph"></div>
+<div class="col-md-6" id="fiberHistoryGraph"></div>
+
